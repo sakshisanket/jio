@@ -95,7 +95,7 @@ public class amazon {
 	}
 	
 	@Test(priority = 6)
-	public static void search() {
+	public static void search() throws InterruptedException {
 		amazon.signin();
 		exp_wait.exp_wait(driver, 7, "//input[@id=\"twotabsearchtextbox\"]").sendKeys("mobile back case");
 		drop_down.drop_down(driver, exp_wait.exp_list(driver, 7, "//div[@class=\"autocomplete-results-container\"]/div/div/div"), 
@@ -105,7 +105,7 @@ public class amazon {
 	}
 	
 	@Test(priority = 7)
-	public static void product_selection() {
+	public static void product_selection() throws InterruptedException {
 		amazon.search();
 		scroll_down.scroll(driver, exp_wait.exp_wait(driver, 5, "//img[@src=\"https://m.media-amazon.com/images/I/71j13yLxNrL._AC_UY218_.jpg\"]"));
 		exp_wait.exp_wait(driver, 7, "//img[@src=\"https://m.media-amazon.com/images/I/71j13yLxNrL._AC_UY218_.jpg\"]").click();
@@ -114,7 +114,7 @@ public class amazon {
 	}
 	
 	@Test(priority = 8)
-	public static void add_to_cart() {
+	public static void add_to_cart() throws InterruptedException {
 		amazon.product_selection();
 		exp_wait.exp_wait(driver, 7, "//input[@id=\"add-to-cart-button\"]").click();
 		Boolean confirmation= exp_wait.exp_wait(driver, 7, "//span[contains(text(),\"Added to Cart\")]").isDisplayed();
@@ -122,7 +122,7 @@ public class amazon {
 	}
 	
 	@Test(priority = 9)
-	public static void buy() {
+	public static void buy() throws InterruptedException {
 		amazon.add_to_cart();
 		exp_wait.exp_wait(driver, 7, "//input[@name=\"proceedToRetailCheckout\"]").click();
 		String url_buy=driver.getCurrentUrl();
@@ -130,7 +130,7 @@ public class amazon {
 		}
 	
 	@Test(priority = 10)
-	public static void address() {
+	public static void address() throws InterruptedException {
 		amazon.buy();
 	//	exp_wait.exp_wait(driver, 8, "//a[@id=\"add-new-address-popover-link\"]").click();
 		drop_down.drop_down(driver, exp_wait.exp_list(driver, 7, "(//ul[@aria-multiselectable=\"false\"])[3]/li/a"),
@@ -156,7 +156,7 @@ public class amazon {
 	}
 	
 	@Test(priority = 11)
-	public static void payment_method() {
+	public static void payment_method() throws InterruptedException {
 		amazon.address();
 		/*exp_wait.exp_wait(driver, 5, "(//h3[@class=\"a-color-base clickable-heading expand-collapsed-panel-trigger\"])[1]").click();
 		String pay_select=driver.getCurrentUrl();
